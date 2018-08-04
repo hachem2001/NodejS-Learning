@@ -1,6 +1,11 @@
-const fs = require('fs');
-var _ = function(){};
+const http = require('http');
 
-fs.unlink('./savedir/writeme.txt', function(){
-  fs.rmdirSync('savedir');
-});
+var server = http.createServer(
+  function(req, res) {
+    console.log(`request was made: `+req.url)
+    res.writeHead(200, {'Content-type':'text/plain'});
+    res.end('Hey humans');
+  });
+
+server.listen(3000, '127.0.0.1');
+console.log('Listening to part 3000');
